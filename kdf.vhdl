@@ -17,10 +17,10 @@ use work.uart_rx_pkg.all;
 --
 -------------------------------------------------------------------------------
 --
-entity rng is
+entity kdf is
 
 	-- 'LEN' is the generic value of the entity.
-	-- 'R2', 'clk_fast', 'reset', 'UART_RX' are the inputs of rng entity.
+	-- 'R2', 'clk_fast', 'reset', 'UART_RX' are the inputs of kdf entity.
 	-- 'R1', 'X', 'segment7', 'anode' and 'UART_TX' are the outputs of the entity.
 
 	generic(
@@ -39,11 +39,11 @@ entity rng is
 		UART_RX  	 : in std_logic;
 	);
 
-end rng;
+end kdf;
 --
 -------------------------------------------------------------------------------
 --
-architecture beh of rng is
+architecture beh of kdf is
 
 	constant CLK_FREQ    : integer := 100E6; -- UART parameter
 	constant BAUDRATE    : integer := 9600;  -- UART parameter
@@ -56,7 +56,7 @@ architecture beh of rng is
 	-- Output of SlowClock module
 	signal clk_slow: std_logic; 
 	
-	-- Output TRNG module
+	-- Output Tkdf module
 	signal rndnumb	: std_logic_vector((LEN - 1) downto 0) := (others => '0');
 	signal rnd_en: std_logic := '0';
 	signal trng_en : std_logic := '0';
